@@ -7,3 +7,12 @@
 A. Thread is created by a user
 B. A reply belongs to a thread, and belongs to a user.
 
+## Tinker/seeder commands
+A. Refresh if needed
+    1. php artisan migrate:refresh
+B. Tinker
+    1. php artisan tinker
+    2. $threads = factory('App\Thread', 50)->create();
+    3. $threads->each(function($thread){
+        factory('App\Reply', 10)->create(['thread_id' => $thread->id]);
+    });
