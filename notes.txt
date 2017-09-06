@@ -1,4 +1,4 @@
-# Forum
+### Forum
 
 1. Threads
 2. Reply
@@ -7,7 +7,7 @@
 A. Thread is created by a user
 B. A reply belongs to a thread, and belongs to a user.
 
-## Tinker/seeder commands
+### Tinker/seeder commands
 A. Refresh if needed
     1. php artisan migrate:refresh
 B. Tinker
@@ -16,3 +16,32 @@ B. Tinker
     3. $threads->each(function($thread){
         factory('App\Reply', 10)->create(['thread_id' => $thread->id]);
     });
+
+### Testing
+
+A. General
+    1. Use separate testing database, not the local/prod database.
+    2. Configure testing env in .env and phpunit.xml
+    3. config/database.php exposes DB_DATABASE
+    4. Use :memory: -> not using an actual file, just do it memory. it's just a test
+    5. Use DatabaseMigrations trait -> for every test, migrate everything that needs to be migrated.
+       If anything changes, roll it back before the test completes. UNDO IT ALL.
+    6. start test names with "test_" or add a doc block before the test
+B.  Testing commands
+    1. phpunit
+
+### Artisan / composer song and dance
+A. php artisan cache:clear -> clears caches, unfucks some stucks.
+B. composer dump-autoload -o -> main culprit esp. when working with vagrant and things not updating
+C. Honorable Mentions
+    1. composer update
+    2. php artisan migrate:rollback
+
+### Show Threads
+A. Links
+    1. path method right on the model -> `$thread->path()`
+        a. Thread knows about the url?
+        b. No, it just knows a string presentation of the thread
+    2. Typical way -> build up using id, title, slug, whatever floats your boat
+
+B.
