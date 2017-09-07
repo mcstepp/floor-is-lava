@@ -56,4 +56,10 @@ A. Links
     2. Typical way -> build up using id, title, slug, whatever floats your boat
 
 B. Replies
-    1. Since using `owner`, need to use foreign key so it matches to something in the database for the relationship
+    1. Since using `author`, need to use foreign key (user_id) so it matches to something in the database for the relationship (no author_id)
+
+
+### General Notes
+1. Law of Demeter - only use one dot or ->, no a.b.method().
+   When one wants a dog to walk, one does not command the dog's legs to walk directly;
+   instead one commands the dog which then commands its own legs.
