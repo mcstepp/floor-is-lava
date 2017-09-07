@@ -30,6 +30,17 @@ A. General
 B.  Testing commands
     1. phpunit
 
+C. Test Setup
+    1. Extends setup method -> `setUp()`
+    2. Call parent setup first
+    3. Reusable
+        a. Assign thread to `this`
+D. Feature Tests
+    1. High-level, browser side user tests
+
+E. Unit tests
+    1. Inside-out tests, granular
+
 ### Artisan / composer song and dance
 A. php artisan cache:clear -> clears caches, unfucks some stucks.
 B. composer dump-autoload -o -> main culprit esp. when working with vagrant and things not updating
@@ -44,4 +55,5 @@ A. Links
         b. No, it just knows a string presentation of the thread
     2. Typical way -> build up using id, title, slug, whatever floats your boat
 
-B.
+B. Replies
+    1. Since using `owner`, need to use foreign key so it matches to something in the database for the relationship
