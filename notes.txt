@@ -37,9 +37,16 @@ C. Test Setup
         a. Assign thread to `this`
 D. Feature Tests
     1. High-level, browser side user tests
+    2. $this->actingAs()
+        a. Defers to $this->be();
 
 E. Unit tests
     1. Inside-out tests, granular
+
+F. Mocking
+    1. actingAs vs Be
+        a. $this->actingAs() defers to $this->be();
+    2. Create -> persists, make -> just the instance, raw -> just array data
 
 ### Artisan / composer song and dance
 A. php artisan cache:clear -> clears caches, unfucks some stucks.
