@@ -51,6 +51,7 @@ F. Mocking
 ### Artisan / composer song and dance
 A. php artisan cache:clear -> clears caches, unfucks some stucks.
 B. composer dump-autoload -o -> main culprit esp. when working with vagrant and things not updating
+    a. use when updating composer.json
 C. Honorable Mentions
     1. composer update
     2. php artisan migrate:rollback
