@@ -3,9 +3,12 @@
 1. Threads
 2. Reply
 3. Users
+4. Channels
 
+### Relationships
 A. Thread is created by a user
 B. A reply belongs to a thread, and belongs to a user.
+C. Every thread belongs to a channel.
 
 ### Tinker/seeder commands
 A. Refresh if needed
