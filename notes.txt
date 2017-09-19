@@ -42,6 +42,10 @@ D. Feature Tests
     1. High-level, browser side user tests
     2. $this->actingAs()
         a. Defers to $this->be();
+    3. CreateThreadsTest.php
+        a. $thread = create('App\Thread'); => creates thread and posts it, used to retrieve id
+        b. $this->post('/threads', $thread->toArray()); => uses POST method endpoint to test posting with auth middleware
+        c. Assumption in testing; thread that is tested is not the thread the authenticated test user posted.
 
 E. Unit tests
     1. Inside-out tests, granular
@@ -74,3 +78,5 @@ B. Replies
 1. Law of Demeter - only use one dot or ->, no a.b.method().
    When one wants a dog to walk, one does not command the dog's legs to walk directly;
    instead one commands the dog which then commands its own legs.
+2. Inlining - use double-quotes to inline PHP with curly-brackets (see Thread.php and ThreadTest.php), not single quotes.
+    Single quotes are for strings.
