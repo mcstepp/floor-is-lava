@@ -74,6 +74,10 @@ A. Links
 B. Replies
     1. Since using `author`, need to use foreign key (user_id) so it matches to something in the database for the relationship (no author_id)
 
+### Validation
+1. If validation fails, redirect back to previous page, populates error with validation key
+2. User can post to a valid channel
+    a. What is a valid channel => value `exists:table,column_name`
 
 ### General Notes
 1. Law of Demeter - only use one dot or ->, no a.b.method().
