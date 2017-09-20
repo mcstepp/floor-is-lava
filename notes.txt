@@ -46,6 +46,7 @@ D. Feature Tests
         a. $thread = create('App\Thread'); => creates thread and posts it, used to retrieve id
         b. $this->post('/threads', $thread->toArray()); => uses POST method endpoint to test posting with auth middleware
         c. Assumption in testing; thread that is tested is not the thread the authenticated test user posted.
+        d. One solution is to check the response location => where did it redirect?
 
 E. Unit tests
     1. Inside-out tests, granular
