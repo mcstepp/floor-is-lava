@@ -6,7 +6,7 @@
 4. Channels
 
 ### Relationships
-A. Thread is created by a user
+A. Thread is created by a user.
 B. A reply belongs to a thread, and belongs to a user.
 C. Every thread belongs to a channel.
 
