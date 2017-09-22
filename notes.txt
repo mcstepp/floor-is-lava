@@ -74,6 +74,11 @@ A. Links
 B. Replies
     1. Since using `author`, need to use foreign key (user_id) so it matches to something in the database for the relationship (no author_id)
 
+C. Channels
+    1. Using Slug
+        a. Route Model Binding typically uses the id to associate with the model
+        b. Override
+
 ### Validation
 1. If validation fails, redirect back to previous page, populates error with validation key
 2. User can post to a valid channel
