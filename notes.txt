@@ -77,12 +77,19 @@ B. Replies
 C. Channels
     1. Using Slug
         a. Route Model Binding typically uses the id to associate with the model
-        b. Override
+        b. Override //TODO: clean this up
 
 ### Validation
 1. If validation fails, redirect back to previous page, populates error with validation key
 2. User can post to a valid channel
     a. What is a valid channel => value `exists:table,column_name`
+
+### Removing SQL queries from the view template
+1. Option 1 => ThreadController, pass in $channel
+    a. Fine for one-offs, but we need to reference channels constantly
+    b. Do not want to reproduce the query over and over.
+2. Option 2 => Service Provider
+    a. Shared views
 
 ### General Notes
 1. Law of Demeter - only use one dot or ->, no a.b.method().
