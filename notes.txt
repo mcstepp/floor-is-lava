@@ -92,6 +92,15 @@ C. Channels
     a. Shared views
     b. Runs before the DatabaseMigrations in tests
 
+### Refactoring
+1. Extract to a Method => protected method on the controller
+2. Extract to dedicated query objects
+    a. fancy word for a class whose name corresponds to a query,
+    b. wraps weighty, complicated SQL
+    c. to retrieve => $this->(new ThreadsQuery)->get();
+3. Filtering Class
+    a. New filters => new methods
+
 ### General Notes
 1. Law of Demeter - only use one dot or ->, no a.b.method().
    When one wants a dog to walk, one does not command the dog's legs to walk directly;

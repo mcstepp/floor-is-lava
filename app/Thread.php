@@ -2,40 +2,76 @@
 
 namespace App;
 
+use App\Filters\ThreadFilters;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
 {
+    /**
+     * Override mass assignment protection
+     *
+     * @var array
+     */
     protected $guarded = [];
 
+    /**
+     * Get a string path for the thread
+     *
+     * @return string
+     */
     public function path()
     {
         return "/threads/{$this->channel->slug}/{$this->id}";
     }
 
-    public function authorName()
-    {
-        return $this->author->name;
-    }
-
-    public function channel()
-    {
-        return $this->belongsTo(Channel::class);
-    }
-
-    public function replies()
-    {
-        return $this->hasMany(Reply::class);
-    }
-
+    /**
+     * A thread belongs to an author
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // TODO: addReply(Reply $reply)
+    /**
+     * A thread is assigned to a channel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function channel()
+    {
+        return $this->belongsTo(Channel::class);
+    }
+
+    /**
+     * A thread may have many replies
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
+    /**
+     * Add a reply to the thread
+     *
+     * @param $reply
+     */
     public function addReply($reply)
     {
         $this->replies()->create($reply);
+    }
+
+    /**
+     * @param $query
+     * @param ThreadFilters $filters
+     * @return Builder
+     */
+    public function scopeFilter($query, ThreadFilters $filters)
+    {
+        return $filters->apply($query);
     }
 }
