@@ -90,6 +90,7 @@ C. Channels
     b. Do not want to reproduce the query over and over.
 2. Option 2 => Service Provider
     a. Shared views
+    b. Runs before the DatabaseMigrations in tests
 
 ### General Notes
 1. Law of Demeter - only use one dot or ->, no a.b.method().
