@@ -73,6 +73,19 @@ A. Links
 
 B. Replies
     1. Since using `author`, need to use foreign key (user_id) so it matches to something in the database for the relationship (no author_id)
+    2. Showing Counts
+        a. $thread->replies->count()
+            i. Does a query behind the scenes to fetch *all* the replies on the thread just to do a count
+        b. $thread->replies()->count()
+            i. SQL is updated to just do a count rather pulling *all* the replies, then the count of that collection
+        c. ThreadsController@show => Thread::withCount('replies')->first()
+            i. Finds the thread, also includes replies_count property
+        d. Helper method to Replies / custom getter
+        e. Global query scope => if every time you fetch replies, you need to get the count associated with it
+            i. Able to show in different views
+            ii. boot() => laravel knows to trigger automatically
+            iii. global scope is just a query scope that is automatically applied to all the queries
+            iv. all the queries for thread should includer reply_count
 
 C. Channels
     1. Using Slug
