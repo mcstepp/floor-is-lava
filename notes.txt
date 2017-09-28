@@ -92,6 +92,10 @@ C. Channels
         a. Route Model Binding typically uses the id to associate with the model
         b. Override //TODO: clean this up
 
+D. Filters
+    1. By Username
+    2. Popularity => by most replies
+
 ### Validation
 1. If validation fails, redirect back to previous page, populates error with validation key
 2. User can post to a valid channel
@@ -115,8 +119,9 @@ C. Channels
     a. New filters => new methods
 
 ### General Notes
-1. Law of Demeter - only use one dot or ->, no a.b.method().
+1. Law of Demeter => only use one dot or ->, no a.b.method().
    When one wants a dog to walk, one does not command the dog's legs to walk directly;
    instead one commands the dog which then commands its own legs.
-2. Inlining - use double-quotes to inline PHP with curly-brackets (see Thread.php and ThreadTest.php), not single quotes.
+2. Inlining => use double-quotes to inline PHP with curly-brackets (see Thread.php and ThreadTest.php), not single quotes.
     Single quotes are for strings.
+3. toSql() => spits out full sql that
