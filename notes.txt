@@ -20,6 +20,13 @@ B. Tinker
         factory('App\Reply', 10)->create(['thread_id' => $thread->id]);
     });
 
+### Artisan Commands
+A. Table migrations
+    1. php artisan make:migration create_favorites_table --create=favorites
+        a. create migration called 'create_favorites_table'
+        b. create a table called 'favorites'
+        c. Pivot table
+
 ### Testing
 
 A. General
@@ -30,6 +37,7 @@ A. General
     5. Use DatabaseMigrations trait -> for every test, migrate everything that needs to be migrated.
        If anything changes, roll it back before the test completes. UNDO IT ALL.
     6. start test names with "test_" or add a doc block before the test
+    7. Need a better error message? Write your own. Wrap test code in try/catch block, catching the exception and returning custom message
 B.  Testing commands
     1. phpunit
 
@@ -95,6 +103,12 @@ C. Channels
 D. Filters
     1. By Username
     2. Popularity => by most replies
+
+E. Favoriting
+    1. Concerns
+        a. User may only favorite once
+            i. protect at database layer `$table->unique()`
+            ii. protect at PHP level
 
 ### Validation
 1. If validation fails, redirect back to previous page, populates error with validation key
