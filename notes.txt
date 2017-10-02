@@ -109,6 +109,11 @@ E. Favoriting
         a. User may only favorite once
             i. protect at database layer `$table->unique()`
             ii. protect at PHP level
+        b. N+1 problems => See Refactoring (below)
+     2. UI
+        a. Holding off on javascript/ajax for now => traditional form
+        b. Disabling button if user already favorited => will refactor to DELETE (unfavorite)
+
 
 ### Validation
 1. If validation fails, redirect back to previous page, populates error with validation key
@@ -131,6 +136,9 @@ E. Favoriting
     c. to retrieve => $this->(new ThreadsQuery)->get();
 3. Filtering Class
     a. New filters => new methods
+4. N+1 problems
+    a. Easy to forget that these methods are making query behind the scenes. [Will refactor soon]
+    b. Eager loading relationships in the controller => `load()`
 
 ### General Notes
 1. Law of Demeter => only use one dot or ->, no a.b.method().
