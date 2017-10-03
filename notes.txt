@@ -139,6 +139,8 @@ E. Favoriting
 4. N+1 problems
     a. Easy to forget that these methods are making query behind the scenes. [Will refactor soon]
     b. Eager loading relationships in the controller => `load()`
+    c. 55 Queries ??!! => culprit: Threads.path() defers to channel relationship
+    d. 4 queries => cache the channels, only fetch when a channel doesn't exist in the cache;
 
 ### General Notes
 1. Law of Demeter => only use one dot or ->, no a.b.method().
@@ -146,4 +148,5 @@ E. Favoriting
    instead one commands the dog which then commands its own legs.
 2. Inlining => use double-quotes to inline PHP with curly-brackets (see Thread.php and ThreadTest.php), not single quotes.
     Single quotes are for strings.
-3. toSql() => spits out full sql that
+3. toSql() => spits out full sql
+4. Laravel DebugBar is awesome!! => https://github.com/barryvdh/laravel-debugbar
