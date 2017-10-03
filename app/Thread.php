@@ -14,6 +14,7 @@ class Thread extends Model
      * @var array
      */
     protected $guarded = [];
+    protected $with = ['author', 'channel'];
 
     protected static function boot()
     {
@@ -61,9 +62,7 @@ class Thread extends Model
      */
     public function replies()
     {
-        return $this->hasMany(Reply::class)
-            ->withCount('favorites')
-            ->with('author');
+        return $this->hasMany(Reply::class);
     }
 
     public function getReplyCountAttribute()

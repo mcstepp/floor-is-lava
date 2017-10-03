@@ -141,6 +141,9 @@ E. Favoriting
     b. Eager loading relationships in the controller => `load()`
     c. 55 Queries ??!! => culprit: Threads.path() defers to channel relationship
     d. 4 queries => cache the channels, only fetch when a channel doesn't exist in the cache;
+5. Global Scopes
+    a. on the model, if there's never a time you don't want to disable global scope, use `protected $with=[''];`
+    b. Use `static::addGlobalScope` in the boot method if you want to be able to disable the add'l info.
 
 ### General Notes
 1. Law of Demeter => only use one dot or ->, no a.b.method().
