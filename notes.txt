@@ -55,6 +55,8 @@ D. Feature Tests
         b. $this->post('/threads', $thread->toArray()); => uses POST method endpoint to test posting with auth middleware
         c. Assumption in testing; thread that is tested is not the thread the authenticated test user posted.
         d. One solution is to check the response location => where did it redirect?
+        e. Soft Delete => If you use SoftDelete in the model, you can test it like this:
+           i. $this->assertDatabaseMissing('threads', ['id' => $thread->id, 'deleted_at' => null ]);
 
 E. Unit tests
     1. Inside-out tests, granular
@@ -119,6 +121,23 @@ E. Favoriting
 1. If validation fails, redirect back to previous page, populates error with validation key
 2. User can post to a valid channel
     a. What is a valid channel => value `exists:table,column_name`
+
+### Deleting a Thread
+1. Deleting a thread should also delete replies (no orphans!)
+    a. Option 1 => setting a foreign key on the replies table.
+        i.onDelete, cascade down the relationships on replies, and delete them with the thread
+        ii. `$table->foreign('threads_id')->onDelete('cas');`
+        iii. Con => some people aren't fans of adding constraints at that level
+    b. Option 2 => do it in the PHP
+        i. ThreadsController@delete
+        ii. Grab all the replies associated with a thread and delete
+        iii. `$threads->replies()->delete()`
+    c. Option 3 => override delete method on the Model
+    d. Option 4 => Model events
+        i. in the model file, in the boot() => when you're deleting the thread, as part of that process, delete associated replies.
+        ii. static::deleting(function ($thread){
+            $threads->replies->delete();
+        });
 
 ### Removing SQL queries from the view template
 1. Option 1 => ThreadController, pass in $channel
