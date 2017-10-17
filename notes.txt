@@ -139,6 +139,18 @@ E. Favoriting
             $threads->replies->delete();
         });
 
+### Authorization Policies
+1. Like 'guard' model, will check permissions.
+2. Implementation
+    a. Use `@can()` or `@cannot()` in blade templates.
+    b. Use `$this->authorize('method', Model)` in controllers => automatically returns 403 if unauthorized
+    c. before() => if returns true, instant access.
+3. Global Admin policies, for common rules application-wide:
+    a. AuthServiceProvider => boot()
+        i. `Gate::before(function ($user){
+               if ( //whatever admin ) { return true; }
+            });`
+
 ### Removing SQL queries from the view template
 1. Option 1 => ThreadController, pass in $channel
     a. Fine for one-offs, but we need to reference channels constantly
