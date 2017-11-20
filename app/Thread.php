@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
 {
+    use RecordsActivity;
+
+
     /**
      * Override mass assignment protection
      *
@@ -31,21 +34,6 @@ class Thread extends Model
         static::created(function($thread){
             $thread->recordActivity('created');
         });
-    }
-
-    protected function recordActivity($event)
-    {
-        Activity::create([
-            'type' => $this->getActivityType($event),
-            'user_id' => auth()->id(),
-            'subject_id' => $this->id,
-            'subject_type' => get_class($this)
-        ]);
-    }
-
-    protected function getActivityType($event)
-    {
-        return $event . '_' . strtolower((new \ReflectionClass($this))->getShortName());
     }
 
     /**
