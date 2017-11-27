@@ -4,11 +4,15 @@
 2. Reply
 3. Users
 4. Channels
+5. Profiles
+6. Favoritable
+6. Records Activity (Activity Feed)
 
 ### Relationships
 A. Thread is created by a user.
 B. A reply belongs to a thread, and belongs to a user.
 C. Every thread belongs to a channel.
+D. Activity belongs to a [thread|reply] (morphMany)
 
 ### Tinker/seeder commands
 A. Refresh if needed
@@ -139,6 +143,14 @@ E. Favoriting
             $threads->replies->delete();
         });
 
+### Activity Feed
+1. Use a trait with morphMany relationship
+2. `subject_id` refers to the model id, `subject_type` => model
+3. Activity Feed reads model events
+    a. Don't need activity for every model event
+    b. Don't need activity for every model
+    c. Model Events => ['booted', 'created', 'updated', 'deleted'
+
 ### Authorization Policies
 1. Like 'guard' model, will check permissions.
 2. Implementation
@@ -175,6 +187,9 @@ E. Favoriting
 5. Global Scopes
     a. on the model, if there's never a time you don't want to disable global scope, use `protected $with=[''];`
     b. Use `static::addGlobalScope` in the boot method if you want to be able to disable the add'l info.
+6. Trait
+    a. Use a trait when you would have the same boot methods across different models
+    b. See `RecordsActivity`, `Reply.php`, `Thread.php`
 
 ### General Notes
 1. Law of Demeter => only use one dot or ->, no a.b.method().

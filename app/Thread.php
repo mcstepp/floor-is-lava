@@ -30,10 +30,6 @@ class Thread extends Model
         static::deleting(function ($thread){
            $thread->replies()->delete();
         });
-
-        static::created(function($thread){
-            $thread->recordActivity('created');
-        });
     }
 
     /**
