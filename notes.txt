@@ -191,6 +191,11 @@ E. Favoriting
     a. Use a trait when you would have the same boot methods across different models
     b. See `RecordsActivity`, `Reply.php`, `Thread.php`
 
+### MorphMany view tips (to avoid constantly checking the type with if statements)
+1. Case: Activity Log
+    a. Want to show
+    b. Tip: Use polymorphic views
+
 ### General Notes
 1. Law of Demeter => only use one dot or ->, no a.b.method().
    When one wants a dog to walk, one does not command the dog's legs to walk directly;

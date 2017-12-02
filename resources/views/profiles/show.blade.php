@@ -11,16 +11,14 @@
                     </h1>
                 </div>
 
-                @foreach($threads as $thread)
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Forum Threads</div>
-                        <div class="list-group">
-                            <a href="{{$thread->path() }}" class="list-group-item">{{$thread->title}}</a>
-                        </div>
-                    </div>
+                @foreach($activities as $date => $activitys)
+                    <h3 class="page-header">{{ $date }}</h3>
+                    @foreach ($activitys as $activity)
+                        @include ("profiles.activities.{$activity->type}")
+                    @endforeach
                 @endforeach
 
-                {{ $threads->links() }}
+                {{--{{ $threads->links() }}--}}
             </div>
         </div>
 
