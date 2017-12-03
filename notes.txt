@@ -195,6 +195,9 @@ E. Favoriting
 1. Case: Activity Log
     a. Want to show
     b. Tip: Use polymorphic views
+    c. Components
+        i. Use as the wrapper/skin for all activity types
+        ii. Use partial views inside the component
 
 ### General Notes
 1. Law of Demeter => only use one dot or ->, no a.b.method().
