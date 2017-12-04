@@ -190,6 +190,8 @@ E. Favoriting
 6. Trait
     a. Use a trait when you would have the same boot methods across different models
     b. See `RecordsActivity`, `Reply.php`, `Thread.php`
+    c. Traits can listen for model events
+        i. Case: `RecordsActivity` => if any model with the trait is deleted, delete it from the activity table
 
 ### MorphMany view tips (to avoid constantly checking the type with if statements)
 1. Case: Activity Log
@@ -199,6 +201,8 @@ E. Favoriting
         i. Use as the wrapper/skin for all activity types
         ii. Use partial views inside the component
 
+
+
 ### General Notes
 1. Law of Demeter => only use one dot or ->, no a.b.method().
    When one wants a dog to walk, one does not command the dog's legs to walk directly;
@@ -207,3 +211,5 @@ E. Favoriting
     Single quotes are for strings.
 3. toSql() => spits out full sql
 4. Laravel DebugBar is awesome!! => https://github.com/barryvdh/laravel-debugbar
+5. Higher Order Messaging with Laravel => activity feed
+    a.
