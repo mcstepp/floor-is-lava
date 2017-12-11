@@ -2,7 +2,7 @@
     <div class="panel-heading">
         <div class="level">
             <span class="flex">
-                {{ $heading }}
+                {{ $heading }}.
             </span>
         </div>
     </div>
