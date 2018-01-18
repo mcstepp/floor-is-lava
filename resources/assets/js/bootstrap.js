@@ -51,3 +51,11 @@ if (token) {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+window.Vue = require('vue');
+
+window.events = new Vue(); // vue.$on or vue.$emit
+
+window.flash = function (message) {
+	window.events.$emit('flash', message);
+}; // flash('my message');
