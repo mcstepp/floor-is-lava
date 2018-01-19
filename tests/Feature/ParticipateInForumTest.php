@@ -50,11 +50,11 @@ class ParticipateInForumTest extends TestCase
 
         $reply = create('App\Reply');
 
-        $this->delete("/replies/{$reply->id}")
+        $this->patch("/replies/{$reply->id}")
             ->assertRedirect('login');
 
         $this->signIn()
-            ->delete("/replies/{$reply->id}")
+            ->patch("/replies/{$reply->id}")
             ->assertStatus(403);
     }
 
@@ -67,6 +67,37 @@ class ParticipateInForumTest extends TestCase
         $this->delete("/replies/{$reply->id}")->assertStatus(302);
 
         $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
+    }
+
+        /** @test */
+    public function unauthorized_users_cannot_update_replies()
+    {
+        $this->withExceptionHandling();
+
+        $reply = create('App\Reply');
+
+        $this->delete("/replies/{$reply->id}")
+            ->assertRedirect('login');
+
+        $this->signIn()
+            ->delete("/replies/{$reply->id}")
+            ->assertStatus(403);
+    }
+
+    /** @test */
+    public function authorized_users_can_update_replies()
+    {
+        $newBody = 'This is new body text';
+
+        $this->signIn();
+        $reply = create('App\Reply', ['user_id' => auth()->id()]);
+
+        $this->patch("/replies/{$reply->id}", ['body' => $newBody]);
+
+        $this->assertDatabaseHas('replies', [
+            'id' => $reply->id,
+            'body' => $newBody
+        ]);
     }
 
 }
