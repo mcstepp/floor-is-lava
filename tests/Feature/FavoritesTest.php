@@ -27,10 +27,25 @@ class FavoritesTest extends TestCase
 
         $reply = create('App\Reply');
         // If I post to a favorite endpoint
-        $this->post('replies/' . $reply->id . '/favorites');
+        $reply->favorite();
 
         // it should be recorded in the database
         $this->assertCount(1, $reply->favorites);
+    }
+
+    /** @test */
+    public function an_authenticated_user_can_unfavorite_any_reply()
+    {
+        $this->signIn();
+
+        $reply = create('App\Reply');
+
+        $reply->favorite();
+
+        $reply->unfavorite();
+
+        // give a fresh instance of favorites
+        $this->assertCount(0, $reply->favorites);
     }
 
     /** @test */
